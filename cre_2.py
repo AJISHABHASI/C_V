@@ -17,7 +17,7 @@ coordinateStore1 = CoordinateStore()
 
 
 # Create a black image, a window and bind the function to window
-Ima = cv2.imread('abril.jpg', 0)
+Ima = cv2.imread('abril2.jpg', 0)
 Ima = cv2.resize(Ima,None,fx=0.75, fy=0.75, interpolation = cv2.INTER_CUBIC)
 #Ima = cv2.imread('cameraman.tif', 0)
 cv2.namedWindow('image')
@@ -30,7 +30,7 @@ while(1):
         break
 #cv2.destroyAllWindows()
 
-trh = 85
+trh = 20
 
 print "Selected Coordinates: "
 
@@ -60,8 +60,8 @@ aux3 = np.uint8(np.zeros_like(aux))
 #aux2 = aux2.astype(int)
 aux2[y,x] = 255
 #kernel = np.ones((5,5),np.uint8)
-#kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
-kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+#kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
 cv2.imshow('image', np.uint8(aux2*255))
 cv2.moveWindow('image', 20,20)
 
@@ -76,7 +76,8 @@ while c != 0:
     c = np.sum(aux2-aux3)
     aux3 = aux2
     cv2.imshow('image', np.uint8(aux2*255))
-    vid = cv2.cvtColor(np.uint8(aux2*255), cv2.COLOR_GRAY2RGB)
+    aux2 = cv2.GaussianBlur(np.uint8(aux2*255),(5,5),0)
+    vid = cv2.cvtColor(np.uint8(aux2), cv2.COLOR_GRAY2RGB)
     out.write(vid)
     #cv2.moveWindow('image', 20,20)
     if cv2.waitKey(1) & 0xFF == ord('q'):  # optional key to end cycle
