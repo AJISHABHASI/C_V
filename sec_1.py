@@ -1,6 +1,7 @@
 from __future__ import division
 import numpy as np
 import cv2
+from datetime import datetime
 
 Ima = cv2.imread('cmyrgb1.jpg', 0)
 
@@ -48,8 +49,9 @@ def cd1(Im, th):
     return res
 
 # Obtener resultado
-
-res = np.uint8(cd1(Ima,30))
+startTime = datetime.now()
+res = np.uint8(cd1(Ima, 10))
+print datetime.now() - startTime
 
 cv2.namedWindow('win',cv2.WINDOW_NORMAL)
 cv2.resizeWindow('win', fil*3, col*2)
