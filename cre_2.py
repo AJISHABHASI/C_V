@@ -17,7 +17,7 @@ coordinateStore1 = CoordinateStore()
 
 
 # Create a black image, a window and bind the function to window
-Ima = cv2.imread('abril2.jpg', 0)
+Ima = cv2.imread('jorge.jpg', 0)
 Ima = cv2.resize(Ima,None,fx=0.75, fy=0.75, interpolation = cv2.INTER_CUBIC)
 #Ima = cv2.imread('cameraman.tif', 0)
 cv2.namedWindow('image')
